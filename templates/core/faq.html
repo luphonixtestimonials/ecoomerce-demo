@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ - Crookeries{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-cream">
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl">
+        <div class="text-center mb-16">
+            <p class="text-brown-medium font-medium mb-2 tracking-wider uppercase text-sm">Help Center</p>
+            <h1 class="text-5xl md:text-6xl font-serif font-bold text-brown-dark mb-6">Frequently Asked Questions</h1>
+            <p class="text-xl text-gray-medium max-w-2xl mx-auto">
+                Find answers to common questions about our products and services.
+            </p>
+        </div>
+        
+        <div class="space-y-4" x-data="{ active: 1 }">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border-2 border-transparent hover:border-beige transition">
+                <button @click="active = active === 1 ? 0 : 1" class="w-full px-8 py-6 text-left font-semibold flex justify-between items-center text-brown-dark hover:text-brown-medium transition">
+                    <span class="text-lg">How do I place an order?</span>
+                    <svg class="w-6 h-6 transform transition-transform flex-shrink-0" :class="{ 'rotate-180': active === 1 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="active === 1" x-collapse class="px-8 pb-6">
+                    <p class="text-gray-medium leading-relaxed">Simply browse our sustainable products, add items to your cart, and proceed to checkout. You can create an account for faster checkout or continue as a guest. Follow the secure payment instructions to complete your order, and we'll take care of the rest!</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border-2 border-transparent hover:border-beige transition">
+                <button @click="active = active === 2 ? 0 : 2" class="w-full px-8 py-6 text-left font-semibold flex justify-between items-center text-brown-dark hover:text-brown-medium transition">
+                    <span class="text-lg">What payment methods do you accept?</span>
+                    <svg class="w-6 h-6 transform transition-transform flex-shrink-0" :class="{ 'rotate-180': active === 2 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="active === 2" x-collapse class="px-8 pb-6">
+                    <p class="text-gray-medium leading-relaxed">We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and other secure payment methods through our encrypted payment gateway. Your financial information is always protected.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border-2 border-transparent hover:border-beige transition">
+                <button @click="active = active === 3 ? 0 : 3" class="w-full px-8 py-6 text-left font-semibold flex justify-between items-center text-brown-dark hover:text-brown-medium transition">
+                    <span class="text-lg">How long does shipping take?</span>
+                    <svg class="w-6 h-6 transform transition-transform flex-shrink-0" :class="{ 'rotate-180': active === 3 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="active === 3" x-collapse class="px-8 pb-6">
+                    <p class="text-gray-medium leading-relaxed">Standard shipping typically takes 3-5 business days within New Zealand. Express shipping options are available for 1-2 day delivery. International orders may take 7-14 business days. You'll receive a tracking number via email once your order ships.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border-2 border-transparent hover:border-beige transition">
+                <button @click="active = active === 4 ? 0 : 4" class="w-full px-8 py-6 text-left font-semibold flex justify-between items-center text-brown-dark hover:text-brown-medium transition">
+                    <span class="text-lg">What is your return policy?</span>
+                    <svg class="w-6 h-6 transform transition-transform flex-shrink-0" :class="{ 'rotate-180': active === 4 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="active === 4" x-collapse class="px-8 pb-6">
+                    <p class="text-gray-medium leading-relaxed">We offer a 30-day return policy on most items. Products must be unused, in their original eco-friendly packaging, and in the same condition you received them. Contact our support team to initiate a return, and we'll provide a prepaid shipping label.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border-2 border-transparent hover:border-beige transition">
+                <button @click="active = active === 5 ? 0 : 5" class="w-full px-8 py-6 text-left font-semibold flex justify-between items-center text-brown-dark hover:text-brown-medium transition">
+                    <span class="text-lg">Are your products really eco-friendly?</span>
+                    <svg class="w-6 h-6 transform transition-transform flex-shrink-0" :class="{ 'rotate-180': active === 5 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="active === 5" x-collapse class="px-8 pb-6">
+                    <p class="text-gray-medium leading-relaxed">Absolutely! All our products are made from sustainable materials, ethically sourced, and designed to minimize environmental impact. We work with certified suppliers and use biodegradable packaging. Each product page details the eco-friendly features and certifications.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border-2 border-transparent hover:border-beige transition">
+                <button @click="active = active === 6 ? 0 : 6" class="w-full px-8 py-6 text-left font-semibold flex justify-between items-center text-brown-dark hover:text-brown-medium transition">
+                    <span class="text-lg">Do you offer wholesale pricing?</span>
+                    <svg class="w-6 h-6 transform transition-transform flex-shrink-0" :class="{ 'rotate-180': active === 6 }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="active === 6" x-collapse class="px-8 pb-6">
+                    <p class="text-gray-medium leading-relaxed">Yes! We offer competitive wholesale pricing for bulk orders and business customers. Contact our sales team at wholesale@crookeries.com with your requirements, and we'll create a custom quote for you.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-16 bg-brown-dark text-cream rounded-3xl p-10 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-4">Still Have Questions?</h2>
+            <p class="text-beige mb-8 max-w-xl mx-auto">
+                Can't find the answer you're looking for? Our friendly customer support team is here to help.
+            </p>
+            <a href="{% url 'core:contact' %}" class="inline-block px-8 py-4 bg-brown-light hover:bg-cream hover:text-brown-dark rounded-full font-semibold transition">
+                Contact Support
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

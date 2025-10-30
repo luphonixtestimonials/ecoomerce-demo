@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block title %}Crookeries - Eco-Friendly Products{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-cream pt-12 pb-20">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <p class="text-brown-medium font-medium mb-4 tracking-wider uppercase text-sm">Eco-Friendly Living</p>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 text-brown-dark leading-tight">
+                    Your crockery glow-up starts here
+                </h1>
+                <p class="text-xl text-gray-medium mb-8 leading-relaxed">
+                    Eco-friendly plates, bowls, and more all in one spot. Shop fresh. Serve fresh.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#shop" class="px-8 py-4 btn-primary rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition">
+                        Explore Collection
+                    </a>
+                    <a href="{% url 'core:about' %}" class="px-8 py-4 bg-transparent border-2 border-brown-dark text-brown-dark hover:bg-brown-dark hover:text-cream rounded-full font-semibold text-lg transition">
+                        Our Story
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="bg-beige rounded-3xl h-96 md:h-[500px] flex items-center justify-center">
+                    <div class="text-center p-8">
+                        <svg class="w-32 h-32 mx-auto text-brown-light opacity-40" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                        </svg>
+                        <p class="mt-4 text-gray-medium">[ Hero Image Placeholder ]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+{% if categories %}
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="text-center mb-12">
+            <p class="text-brown-medium font-medium mb-2 tracking-wider uppercase text-sm">Browse</p>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-brown-dark">Shop by Category</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {% for category in categories %}
+            <a href="#category-{{ category.slug }}" class="group">
+                <div class="bg-cream hover:bg-beige rounded-2xl p-8 text-center transition border-2 border-transparent hover:border-brown-light">
+                    {% if category.image %}
+                    <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-24 h-24 mx-auto mb-4 rounded-full object-cover">
+                    {% else %}
+                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-beige flex items-center justify-center">
+                        <svg class="w-12 h-12 text-brown-light" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
+                        </svg>
+                    </div>
+                    {% endif %}
+                    <h3 class="font-semibold text-lg text-charcoal group-hover:text-brown-dark transition">{{ category.name }}</h3>
+                    <p class="text-sm text-gray-medium mt-1">{{ category.description|truncatewords:5 }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Featured Products -->
+{% if featured_products %}
+<section id="featured" class="py-20 bg-cream">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="flex items-center justify-between mb-12">
+            <div>
+                <p class="text-brown-medium font-medium mb-2 tracking-wider uppercase text-sm">Handpicked</p>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-brown-dark">Featured Products</h2>
+            </div>
+            <a href="#shop" class="text-brown-dark hover:text-brown-light font-semibold hidden md:inline-flex items-center gap-2">
+                View All
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for product in featured_products %}
+            <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+                <div class="relative overflow-hidden aspect-square bg-beige">
+                    {% if product.images.first %}
+                    <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    {% else %}
+                    <div class="w-full h-full flex items-center justify-center">
+                        <svg class="w-24 h-24 text-brown-light opacity-30" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    {% endif %}
+                    {% if product.discount_percentage > 0 %}
+                    <span class="absolute top-4 right-4 bg-brown-dark text-cream px-4 py-2 rounded-full text-sm font-semibold">
+                        -{{ product.discount_percentage }}%
+                    </span>
+                    {% endif %}
+                    {% if product.is_new %}
+                    <span class="absolute top-4 left-4 bg-brown-light text-cream px-4 py-2 rounded-full text-sm font-semibold">
+                        New
+                    </span>
+                    {% endif %}
+                </div>
+                <div class="p-6">
+                    <p class="text-sm text-gray-medium mb-1">{{ product.brand.name|default:"" }}</p>
+                    <h3 class="font-semibold text-lg mb-2 line-clamp-2 text-charcoal group-hover:text-brown-dark transition">
+                        {{ product.name }}
+                    </h3>
+                    <p class="text-sm text-gray-medium mb-4 line-clamp-2">{{ product.short_description }}</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-2xl font-bold text-brown-dark">${{ product.price }}</span>
+                            {% if product.compare_price %}
+                            <span class="text-gray-warm line-through ml-2 text-sm">${{ product.compare_price }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <button class="w-full bg-brown-dark hover:bg-brown-medium text-cream py-3 rounded-full font-semibold transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Values Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="text-center mb-12">
+            <p class="text-brown-medium font-medium mb-2 tracking-wider uppercase text-sm">Why Choose Us</p>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-brown-dark">Sustainable Living</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center p-8">
+                <div class="w-16 h-16 bg-beige rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-brown-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-brown-dark">Eco-Friendly</h3>
+                <p class="text-gray-medium leading-relaxed">100% sustainable materials sourced responsibly from nature.</p>
+            </div>
+            <div class="text-center p-8">
+                <div class="w-16 h-16 bg-beige rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-brown-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-brown-dark">Premium Quality</h3>
+                <p class="text-gray-medium leading-relaxed">Handcrafted with attention to detail and lasting durability.</p>
+            </div>
+            <div class="text-center p-8">
+                <div class="w-16 h-16 bg-beige rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-brown-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-brown-dark">Fast Delivery</h3>
+                <p class="text-gray-medium leading-relaxed">Quick and reliable shipping to your door, worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-20 bg-brown-dark text-cream">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">Stay Connected</h2>
+            <p class="text-beige mb-8 text-lg">Subscribe to get special offers, free giveaways, and updates.</p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 rounded-full bg-brown-medium text-cream placeholder-beige focus:outline-none focus:ring-2 focus:ring-brown-light">
+                <button type="submit" class="px-8 py-4 bg-brown-light hover:bg-cream hover:text-brown-dark rounded-full font-semibold transition">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

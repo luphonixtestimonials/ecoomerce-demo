@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - Crookeries{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-cream">
+    <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+        <div class="text-center mb-16">
+            <p class="text-brown-medium font-medium mb-2 tracking-wider uppercase text-sm">Our Story</p>
+            <h1 class="text-5xl md:text-6xl font-serif font-bold text-brown-dark mb-6">About Crookeries</h1>
+            <p class="text-xl text-gray-medium max-w-3xl mx-auto leading-relaxed">
+                We're passionate about sustainable living and bringing eco-friendly products to your home.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 mb-16">
+            <div class="bg-beige rounded-3xl p-12 flex items-center justify-center">
+                <svg class="w-48 h-48 text-brown-light opacity-30" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+            <div class="flex flex-col justify-center">
+                <h2 class="text-3xl font-serif font-bold text-brown-dark mb-4">Our Mission</h2>
+                <p class="text-gray-medium leading-relaxed mb-4">
+                    Founded in 2025, Crookeries was born from a simple idea: bringing sustainable, eco-friendly products to everyone. We believe that everyday items can be both beautiful and kind to our planet.
+                </p>
+                <p class="text-gray-medium leading-relaxed">
+                    Every product in our collection is carefully selected for its quality, sustainability, and minimal environmental impact. From sourcing to shipping, we're committed to reducing our footprint.
+                </p>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-3xl p-12 mb-16">
+            <h2 class="text-3xl font-serif font-bold text-brown-dark mb-8 text-center">Our Values</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="w-12 h-12 bg-beige rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-brown-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-lg text-charcoal mb-2">100% Authentic</h3>
+                    <p class="text-gray-medium text-sm leading-relaxed">Every product is genuine and sourced from trusted sustainable suppliers.</p>
+                </div>
+                <div>
+                    <div class="w-12 h-12 bg-beige rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-brown-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-lg text-charcoal mb-2">Fast Delivery</h3>
+                    <p class="text-gray-medium text-sm leading-relaxed">Quick, reliable shipping with eco-friendly packaging materials.</p>
+                </div>
+                <div>
+                    <div class="w-12 h-12 bg-beige rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-brown-dark" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-lg text-charcoal mb-2">Customer First</h3>
+                    <p class="text-gray-medium text-sm leading-relaxed">Your satisfaction is our priority with 24/7 support and easy returns.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-brown-dark text-cream rounded-3xl p-12 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-4">Join Our Journey</h2>
+            <p class="text-beige mb-8 max-w-2xl mx-auto">
+                Together, we can make a difference. Every purchase supports sustainable practices and helps create a cleaner, greener future.
+            </p>
+            <a href="{% url 'core:contact' %}" class="inline-block px-8 py-4 bg-brown-light hover:bg-cream hover:text-brown-dark rounded-full font-semibold transition">
+                Get in Touch
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

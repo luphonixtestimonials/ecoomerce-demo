@@ -1,0 +1,62 @@
+Project: Build a Django website replicating the structure, sections, and feel of puffland.nz.  
+Use Django (>=4), PostgreSQL, Django REST Framework for APIs, and TailwindCSS with the latest modern design system.  
+Website must be responsive, optimized, and production-ready.
+
+Requirements:
+
+1. Pages & Sections
+  - Home: modern hero banner with CTA, featured products, top-sellers, animated offers section, newsletter popup.
+  - Shop: grid view with dynamic filters (category, brand, price), sorting, and live search.
+  - Product detail: high-quality image slider, zoom effect, ingredient details, size selector, reviews, and “related products” carousel.
+  - Cart & Checkout: quantity update, apply coupon, modern checkout with smooth progress UI, address autofill, and payment placeholder.
+  - User Auth: signup/login via email, password reset, profile with order history and wishlist.
+  - Blog/Guides: article list + detail with share buttons and author section.
+  - About / Contact / FAQ / Terms / Privacy pages.
+  - Footer: modern layout with newsletter, quick links, social icons, and brand logo.
+
+2. Data Models
+  - Category, Product, ProductImage, Variant, Review, Cart, CartItem, Order, BlogPost, Coupon, UserProfile.
+
+3. APIs & Frontend
+  - REST endpoints for product list/detail, cart operations, user auth, orders.
+  - Django templates + TailwindCSS frontend.
+  - AJAX/Fetch for cart updates and filters.
+  - SEO meta tags, sitemap.xml, robots.txt, and Open Graph for social share.
+
+4. UX & Visual (Modern Theme)
+  - Adopt a **latest eCommerce theme** with:
+    - **Glassmorphism + subtle gradients**
+    - **Smooth hover animations & transitions**
+    - **Neumorphic product cards**
+    - **Dark/light mode toggle**
+    - **Minimalist typography (Inter or Poppins font)**
+    - **Rounded buttons & shadows**
+    - **Gradient accent colors (e.g., teal → purple or gold → black)**
+    - **Floating cart icon & sticky header**
+  - Clean, elegant spacing inspired by modern Shopify/Next.js stores.
+  - Hero banner with parallax background and subtle motion effects.
+  - Fully mobile-first and retina-ready layout.
+
+5. Extra Features
+  - Search by tag/price/category with instant results.
+  - Coupon management system.
+  - Email order confirmation (Django console backend in dev).
+  - Image compression and responsive loading.
+  - Blog comment moderation in admin.
+  - Wishlist, product recommendations, and rating logic.
+  - Newsletter integration with Mailchimp placeholder.
+
+6. Deliverables
+  - Django apps: `products`, `orders`, `cart`, `users`, `blog`.
+  - `README.md` with setup, migrations, and sample data.
+  - Docker + docker-compose (with PostgreSQL).
+  - Demo products and images for testing.
+  - GitHub Actions CI for tests/lint.
+  - Easy deployment on Render/Google Cloud.
+
+7. Acceptance Criteria
+  - All major flows (home, product, cart, checkout, auth) functional.
+  - Fully responsive and fast.
+  - Theme matches the latest Puffland-like modern aesthetics.
+  - Admin can CRUD everything.
+  - API docs included.
