@@ -76,52 +76,6 @@ class Product(ClusterableModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    # Wagtail panels for admin interface
-    panels = [
-        MultiFieldPanel([
-            FieldPanel('name'),
-            FieldPanel('slug'),
-            FieldPanel('category'),
-            FieldPanel('brand'),
-        ], heading="Basic Information"),
-        
-        MultiFieldPanel([
-            FieldPanel('short_description'),
-            FieldPanel('description'),
-            FieldPanel('ingredients'),
-        ], heading="Description"),
-        
-        MultiFieldPanel([
-            FieldPanel('price'),
-            FieldPanel('compare_price'),
-            FieldPanel('cost_price'),
-        ], heading="Pricing & Discounts"),
-        
-        MultiFieldPanel([
-            FieldPanel('stock'),
-            FieldPanel('low_stock_threshold'),
-            FieldPanel('sku'),
-            FieldPanel('barcode'),
-            FieldPanel('weight'),
-        ], heading="Inventory"),
-        
-        MultiFieldPanel([
-            FieldPanel('is_active'),
-            FieldPanel('is_featured'),
-            FieldPanel('is_new'),
-            FieldPanel('is_bestseller'),
-        ], heading="Status Flags"),
-        
-        InlinePanel('images', label="Product Images"),
-        InlinePanel('variants', label="Product Variants"),
-        
-        MultiFieldPanel([
-            FieldPanel('seo_title'),
-            FieldPanel('seo_description'),
-            FieldPanel('seo_keywords'),
-        ], heading="SEO Settings"),
-    ]
-    
     class Meta:
         ordering = ['-created_at']
         indexes = [
