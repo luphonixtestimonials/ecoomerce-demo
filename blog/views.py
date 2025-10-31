@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from .models import BlogPost
 
 def blog_list(request):
-    posts = BlogPost.objects.filter(is_published=True).order_by('-published_date')
+    posts = BlogPost.objects.filter(is_published=True).order_by('-published_at')
     
     paginator = Paginator(posts, 9)
     page_number = request.GET.get('page')
@@ -19,7 +19,7 @@ def blog_detail(request, slug):
     
     related_posts = BlogPost.objects.filter(
         is_published=True
-    ).exclude(id=post.id).order_by('-published_date')[:3]
+    ).exclude(id=post.id).order_by('-published_at')[:3]
     
     context = {
         'post': post,

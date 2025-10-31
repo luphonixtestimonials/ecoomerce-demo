@@ -25,14 +25,11 @@
                 </div>
             </div>
             <div class="relative">
-                <div class="bg-beige rounded-3xl h-96 md:h-[500px] flex items-center justify-center">
-                    <div class="text-center p-8">
-                        <svg class="w-32 h-32 mx-auto text-brown-light opacity-40" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
-                        </svg>
-                        <p class="mt-4 text-gray-medium">[ Hero Image Placeholder ]</p>
-                    </div>
+                <div class="bg-beige rounded-3xl h-96 md:h-[500px] overflow-hidden shadow-2xl">
+                    <img src="/media/hero/hero-image.jpg" alt="Premium eco-friendly crockery" class="w-full h-full object-cover">
                 </div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brown-light rounded-full opacity-20"></div>
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-brown-medium rounded-full opacity-20"></div>
             </div>
         </div>
     </div>
@@ -48,19 +45,19 @@
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             {% for category in categories %}
-            <a href="#category-{{ category.slug }}" class="group">
-                <div class="bg-cream hover:bg-beige rounded-2xl p-8 text-center transition border-2 border-transparent hover:border-brown-light">
-                    {% if category.image %}
-                    <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-24 h-24 mx-auto mb-4 rounded-full object-cover">
-                    {% else %}
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-beige flex items-center justify-center">
-                        <svg class="w-12 h-12 text-brown-light" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
-                        </svg>
+            <a href="{% url 'products:shop' %}?category={{ category.slug }}" class="group">
+                <div class="bg-white hover:bg-beige rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-brown-light">
+                    <div class="h-48 overflow-hidden bg-beige">
+                        {% if category.image %}
+                        <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        {% else %}
+                        <img src="/media/categories/{{ category.slug }}.jpg" alt="{{ category.name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='/media/hero/hero-image.jpg';">
+                        {% endif %}
                     </div>
-                    {% endif %}
-                    <h3 class="font-semibold text-lg text-charcoal group-hover:text-brown-dark transition">{{ category.name }}</h3>
-                    <p class="text-sm text-gray-medium mt-1">{{ category.description|truncatewords:5 }}</p>
+                    <div class="p-6 text-center">
+                        <h3 class="font-semibold text-lg text-charcoal group-hover:text-brown-dark transition">{{ category.name }}</h3>
+                        <p class="text-sm text-gray-medium mt-1">{{ category.description|truncatewords:5 }}</p>
+                    </div>
                 </div>
             </a>
             {% endfor %}
