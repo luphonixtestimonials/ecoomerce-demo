@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog - Crookeries{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 lg:px-8 py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-serif font-bold text-brown-dark mb-4">Our Blog</h1>
+        <p class="text-lg text-gray-medium">Tips, stories, and insights about eco-friendly living</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {% for post in page_obj %}
+        <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-beige">
+            {% if post.featured_image %}
+            <div class="h-64 overflow-hidden bg-beige">
+                <img src="{{ post.featured_image.url }}" 
+                     alt="{{ post.title }}" 
+                     class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
+            </div>
+            {% else %}
+            <div class="h-64 bg-gradient-to-br from-brown-dark to-brown-medium flex items-center justify-center">
+                <span class="text-white text-4xl">📝</span>
+            </div>
+            {% endif %}
+            
+            <div class="p-6">
+                <div class="flex items-center gap-4 text-sm text-gray-medium mb-4">
+                    <span>{{ post.published_date|date:"M d, Y" }}</span>
+                    <span>•</span>
+                    <span>{{ post.author.username }}</span>
+                </div>
+                
+                <h2 class="text-2xl font-serif font-bold text-brown-dark mb-3 hover:text-brown-light transition">
+                    <a href="{% url 'blog:blog_detail' post.slug %}">{{ post.title }}</a>
+                </h2>
+                
+                <p class="text-gray-medium mb-4 line-clamp-3">{{ post.excerpt }}</p>
+                
+                <a href="{% url 'blog:blog_detail' post.slug %}" 
+                   class="inline-block text-brown-dark font-semibold hover:text-brown-light transition">
+                    Read More →
+                </a>
+            </div>
+        </article>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <p class="text-2xl text-gray-medium">No blog posts yet</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+    <div class="flex justify-center gap-2">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" 
+           class="px-6 py-3 bg-brown-dark text-white rounded-lg hover:bg-brown-medium transition">Previous</a>
+        {% endif %}
+        
+        <span class="px-6 py-3 bg-beige rounded-lg">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" 
+           class="px-6 py-3 bg-brown-dark text-white rounded-lg hover:bg-brown-medium transition">Next</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

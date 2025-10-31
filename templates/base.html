@@ -27,14 +27,14 @@
                         'serif': ['DM Serif Display', 'serif'],
                     },
                     colors: {
-                        cream: '#FBE4D8',
-                        charcoal: '#190019',
-                        'brown-dark': '#2B124C',
-                        'brown-medium': '#522B5B',
-                        'brown-light': '#854F6C',
-                        'gray-warm': '#DFB6B2',
-                        'gray-medium': '#854F6C',
-                        beige: '#DFB6B2',
+                        cream: '#F5EBFA',
+                        charcoal: '#49225B',
+                        'brown-dark': '#49225B',
+                        'brown-medium': '#6E3482',
+                        'brown-light': '#A56ABD',
+                        'gray-warm': '#E7DBEF',
+                        'gray-medium': '#A56ABD',
+                        beige: '#E7DBEF',
                     },
                 }
             }
@@ -44,24 +44,24 @@
     <style>
         body { 
             font-family: 'DM Sans', sans-serif;
-            background-color: #FBE4D8;
+            background-color: #F5EBFA;
         }
         h1, h2, h3, h4, h5, h6 { 
             font-family: 'DM Serif Display', serif;
         }
         
         .btn-primary {
-            background-color: #2B124C;
-            color: #FBE4D8;
+            background-color: #49225B;
+            color: #F5EBFA;
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
-            background-color: #522B5B;
+            background-color: #6E3482;
         }
         
         .text-accent {
-            color: #2B124C;
+            color: #49225B;
         }
     </style>
     
@@ -95,8 +95,8 @@
                 
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="{% url 'core:home' %}" class="text-charcoal hover:text-brown-dark transition font-medium">Home</a>
-                    <a href="#shop" class="text-charcoal hover:text-brown-dark transition font-medium">Shop</a>
-                    <a href="#blog" class="text-charcoal hover:text-brown-dark transition font-medium">Blog</a>
+                    <a href="{% url 'products:shop' %}" class="text-charcoal hover:text-brown-dark transition font-medium">Shop</a>
+                    <a href="{% url 'blog:blog_list' %}" class="text-charcoal hover:text-brown-dark transition font-medium">Blog</a>
                     <a href="{% url 'core:about' %}" class="text-charcoal hover:text-brown-dark transition font-medium">About</a>
                     <a href="{% url 'core:contact' %}" class="text-charcoal hover:text-brown-dark transition font-medium">Contact</a>
                 </nav>
@@ -133,8 +133,8 @@
             <div x-show="mobileMenu" x-cloak class="md:hidden py-4 border-t border-beige">
                 <nav class="flex flex-col space-y-3">
                     <a href="{% url 'core:home' %}" class="text-charcoal hover:text-brown-dark transition font-medium py-2">Home</a>
-                    <a href="#shop" class="text-charcoal hover:text-brown-dark transition font-medium py-2">Shop</a>
-                    <a href="#blog" class="text-charcoal hover:text-brown-dark transition font-medium py-2">Blog</a>
+                    <a href="{% url 'products:shop' %}" class="text-charcoal hover:text-brown-dark transition font-medium py-2">Shop</a>
+                    <a href="{% url 'blog:blog_list' %}" class="text-charcoal hover:text-brown-dark transition font-medium py-2">Blog</a>
                     <a href="{% url 'core:about' %}" class="text-charcoal hover:text-brown-dark transition font-medium py-2">About</a>
                     <a href="{% url 'core:contact' %}" class="text-charcoal hover:text-brown-dark transition font-medium py-2">Contact</a>
                 </nav>

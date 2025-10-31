@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shop - Crookeries{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 lg:px-8 py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-serif font-bold text-brown-dark mb-4">Shop Our Collection</h1>
+        <p class="text-lg text-gray-medium">Discover our eco-friendly crockery selection</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+        <aside class="lg:w-1/4">
+            <div class="bg-white rounded-lg p-6 shadow-md border border-beige">
+                <h3 class="text-xl font-serif font-bold text-brown-dark mb-4">Filters</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-semibold text-brown-dark mb-3">Categories</h4>
+                    <div class="space-y-2">
+                        <a href="?{% if selected_brand %}brand={{ selected_brand }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}" 
+                           class="block py-2 px-3 rounded {% if not selected_category %}bg-brown-light text-white{% else %}text-gray-medium hover:bg-beige{% endif %} transition">
+                            All Products
+                        </a>
+                        {% for category in categories %}
+                        <a href="?category={{ category.slug }}{% if selected_brand %}&brand={{ selected_brand }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                           class="block py-2 px-3 rounded {% if selected_category == category.slug %}bg-brown-light text-white{% else %}text-gray-medium hover:bg-beige{% endif %} transition">
+                            {{ category.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-semibold text-brown-dark mb-3">Brands</h4>
+                    <div class="space-y-2">
+                        <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}{% if search_query %}q={{ search_query }}&{% endif %}" 
+                           class="block py-2 px-3 rounded {% if not selected_brand %}bg-brown-light text-white{% else %}text-gray-medium hover:bg-beige{% endif %} transition">
+                            All Brands
+                        </a>
+                        {% for brand in brands %}
+                        <a href="?{% if selected_category %}category={{ selected_category }}&{% endif %}brand={{ brand.slug }}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                           class="block py-2 px-3 rounded {% if selected_brand == brand.slug %}bg-brown-light text-white{% else %}text-gray-medium hover:bg-beige{% endif %} transition">
+                            {{ brand.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="lg:w-3/4">
+            <div class="flex justify-between items-center mb-6">
+                <p class="text-gray-medium">Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ page_obj.paginator.count }} products</p>
+                
+                <select onchange="window.location.href='?{% if selected_category %}category={{ selected_category }}&{% endif %}{% if selected_brand %}brand={{ selected_brand }}&{% endif %}sort=' + this.value" 
+                        class="px-4 py-2 border border-beige rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light">
+                    <option value="-created_at" {% if sort_by == '-created_at' %}selected{% endif %}>Newest First</option>
+                    <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price: Low to High</option>
+                    <option value="-price" {% if sort_by == '-price' %}selected{% endif %}>Price: High to Low</option>
+                    <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Name: A-Z</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {% for product in page_obj %}
+                <a href="{% url 'products:product_detail' product.slug %}" class="group">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-beige">
+                        {% if product.images.all.0 %}
+                        <div class="aspect-square overflow-hidden bg-beige">
+                            <img src="{{ product.images.all.0.image.url }}" 
+                                 alt="{{ product.name }}" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        {% else %}
+                        <div class="aspect-square bg-beige flex items-center justify-center">
+                            <span class="text-gray-medium text-4xl">🍽️</span>
+                        </div>
+                        {% endif %}
+                        <div class="p-4">
+                            <h3 class="font-semibold text-brown-dark mb-2 group-hover:text-brown-light transition">{{ product.name }}</h3>
+                            <p class="text-sm text-gray-medium mb-3 line-clamp-2">{{ product.short_description }}</p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-2xl font-bold text-brown-dark">${{ product.price }}</span>
+                                    {% if product.compare_price %}
+                                    <span class="text-sm text-gray-medium line-through ml-2">${{ product.compare_price }}</span>
+                                    {% endif %}
+                                </div>
+                                {% if product.stock > 0 %}
+                                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">In Stock</span>
+                                {% else %}
+                                <span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded-full">Out of Stock</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% empty %}
+                <div class="col-span-full text-center py-12">
+                    <p class="text-2xl text-gray-medium">No products found</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if page_obj.has_other_pages %}
+            <div class="flex justify-center gap-2">
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_brand %}&brand={{ selected_brand }}{% endif %}" 
+                   class="px-4 py-2 bg-brown-dark text-white rounded-lg hover:bg-brown-medium transition">Previous</a>
+                {% endif %}
+                
+                <span class="px-4 py-2 bg-beige rounded-lg">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_brand %}&brand={{ selected_brand }}{% endif %}" 
+                   class="px-4 py-2 bg-brown-dark text-white rounded-lg hover:bg-brown-medium transition">Next</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</div>
+{% endblock %}
