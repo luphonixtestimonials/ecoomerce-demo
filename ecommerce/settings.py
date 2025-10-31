@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # Wagtail apps
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
-    'wagtail.contrib.modeladmin',  # Changed from 'wagtail_modeladmin'
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
